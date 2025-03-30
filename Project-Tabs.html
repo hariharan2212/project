@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expandable Boxes with Dropdown Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .box {
+            width: 300px;
+            height: 50px;
+            overflow: hidden;
+            transition: height 0.3s ease-in-out;
+            border: 1px solid #ccc;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        .expanded {
+            height: 250px;
+        }
+        .box label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            cursor: pointer;
+        }
+        .discount {
+            background-color: lightpink;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .price-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 5px;
+            margin-left: 20px;
+        }
+        .old-price {
+            font-size: 12px;
+            color: grey;
+            text-decoration: line-through;
+            margin-right: 40px;
+        }
+        .info-box {
+            display: none;
+            margin-top: 10px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+        .expanded .info-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .info-table {
+            display: grid;
+            grid-template-columns: auto 1fr 1fr;
+            gap: 10px;
+            width: 100%;
+            text-align: center;
+        }
+        .info-table div {
+            padding: 5px;
+            font-weight: bold;
+        }
+        .info-table select {
+            width: 100%;
+            padding: 5px;
+            font-size: 14px;
+        }
+        .header {
+            border-radius: 2px;
+            padding: 5px;
+        }
+        .info-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: green;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        .info-container span {
+            margin: 0 20px;
+        }
+        .Total {
+            color: black;
+            font-weight: normal;
+        }
+        .Unit {
+            margin-left: -50px;
+        }
+        .Unit1 {
+            margin-left: -40px;
+        }
+        .add-to-cart {
+            width: 325px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: lightpink;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box" id="box1">
+        <label>
+            <input type="radio" name="expand" onclick="toggleBox('box1')"> 
+            <span class="Unit">1 Unit</span>
+            <span class="discount">10% Off</span>
+            <span>$10.00 USD</span>
+        </label>
+        <div class="price-container">
+            <span>Standard Price</span>
+            <span class="old-price">$24.00 USD</span>
+        </div>
+        <div class="info-box">
+            <div class="info-table">
+                <div class="header"></div> <div class="header">Size</div> <div class="header">Colour</div>
+                <div>#1</div> 
+                <select><option>S</option><option>M</option></select>
+                <select><option>Black</option><option>Yellow</option></select>
+                <div>#2</div> 
+                <select><option>S</option><option>M</option></select>
+                <select><option>Colour</option><option>Black</option></select>
+            </div>
+        </div>
+    </div>
+
+    <div class="box" id="box2">
+        <label>
+            <input type="radio" name="expand" onclick="toggleBox('box2')"> 
+            <span class="Unit1">2 Units</span>
+            <span class="discount">20% Off</span>
+            <span>$18.00 USD</span>
+        </label>
+        <div class="price-container">
+            <span></span>
+            <span class="old-price">$24.00 USD</span>
+        </div>
+        <div class="info-box">
+            <div class="info-table">
+                <div class="header"></div> <div class="header">Size</div> <div class="header">Colour</div>
+                <div>#1</div> 
+                <select><option>S</option><option>M</option></select>
+                <select><option>Black</option><option>Yellow</option></select>
+                <div>#2</div> 
+                <select><option>S</option><option>M</option></select>
+                <select><option>Colour</option><option>Black</option></select>
+            </div>
+        </div>
+    </div>
+
+    <div class="box" id="box3">
+        <label>
+            <input type="radio" name="expand" onclick="toggleBox('box3')"> 
+            <span class="Unit1">3 Units</span>
+            <span class="discount">30% Off</span>
+            <span>$24.00 USD</span>
+        </label>
+        <div class="price-container">
+            <span></span>
+            <span class="old-price">$24.00 USD</span>
+        </div>
+        <div class="info-box">
+            <div class="info-table">
+                <div class="header"></div> <div class="header">Size</div> <div class="header">Colour</div>
+                <div>#1</div> 
+                <select><option>S</option><option>M</option></select>
+                <select><option>Black</option><option>Yellow</option></select>
+                <div>#2</div> 
+                <select><option>S</option><option>M</option></select>
+                <select><option>Colour</option><option>Black</option></select>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-container">
+        <span>Free Delivery</span>
+        <span class="Total">Total : $18.00 USD</span>
+    </div>
+
+    <div class="add-to-cart">
+        + Add to cart
+    </div>
+
+    <script>
+        function toggleBox(boxId) {
+            const selectedBox = document.getElementById(boxId);
+            const isExpanded = selectedBox.classList.contains('expanded');
+
+            // Close all boxes first
+            document.querySelectorAll('.box').forEach(box => {
+                box.classList.remove('expanded');
+            });
+
+            // Toggle only if it wasn't already expanded
+            if (!isExpanded) {
+                selectedBox.classList.add('expanded');
+            }
+        }
+    </script>
+
+</body>
+</html>
